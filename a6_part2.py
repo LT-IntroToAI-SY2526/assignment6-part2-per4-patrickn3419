@@ -24,17 +24,25 @@ def load_and_explore_data(filename):
         pandas DataFrame containing the data
     """
     # TODO: Load the CSV file using pandas
-    
+    data = pd.read_csv(filename)
+
     # TODO: Print the first 5 rows
+    print("=== House Price Data ===")
+    print(f"\nFirst 5 rows:")
+    print(data.head)
     
     # TODO: Print the shape of the dataset
+    print(f"\nDataset shape: {data.shape[0]} rows, {data.shape[1]} columns")
     
     # TODO: Print basic statistics for ALL columns
+    print(f"\nBasic statistics:")
+    print(data.describe())
     
     # TODO: Print the column names
+    print(f"\nColumn names: {list(data.columns)}")
     
     # TODO: Return the dataframe
-    pass
+    return data
 
 
 def visualize_features(data):
