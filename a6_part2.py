@@ -53,13 +53,20 @@ def visualize_features(data):
         data: pandas DataFrame with features and Price
     """
     # TODO: Create a figure with 2x2 subplots, size (12, 10)
+    fig, axes = plt.subplots(2, 2, figsize=(12, 10))
     
     # TODO: Add a main title: 'House Features vs Price'
+    fig.suptitle('House Features vs Price', fontsize=16, fontweight='bold')
     
     # TODO: Plot 1 (top left): SquareFeet vs Price
     #       - scatter plot, color='blue', alpha=0.6
     #       - labels and title
     #       - grid
+    axes[0, 0].scatter(data['SquareFeet'], data['Price'], color='blue', alpha=0.6)
+    axes[0, 0].set_xlabel('Square Feet')
+    axes[0, 0].set_ylabel('Price ($)')
+    axes[0, 0].set_title('SquareFeet vs Price')
+    axes[0, 0].grid(True, alpha=0.3)
     
     # TODO: Plot 2 (top right): Bedrooms vs Price
     #       - scatter plot, color='green', alpha=0.6
