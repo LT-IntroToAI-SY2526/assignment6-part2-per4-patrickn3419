@@ -178,18 +178,34 @@ def train_model(X_train, y_train, feature_names):
         trained LinearRegression model
     """
     # TODO: Create a LinearRegression model
+    model = LinearRegression()
     
     # TODO: Train the model using fit()
+    model.fit(X_train, y_train)
+    print(f"\n=== Model Training Complete ===")
     
     # TODO: Print the intercept
+    print(f"Intercept: ${model.intercept_:.2f}")
     
     # TODO: Print each coefficient with its feature name
     #       Hint: use zip(feature_names, model.coef_)
+    print(f"\nCoefficients:")
+    for name, coef in zip(feature_names, model.coef_):
+        print(f"  {name}: {coef:.2f}")
     
     # TODO: Print the full equation in readable format
+    print(f"\nEquation:")
+    equation = f"Price = "
+    for i, (name, coef) in enumerate(zip(feature_names, model.coef_)):
+        if i == 0:
+            equation += f"{coef:.2f} × {name}"
+        else:
+            equation += f" + ({coef:.2f}) × {name}"
+    equation += f" + {model.intercept_:.2f}"
+    print(equation)
     
     # TODO: Return the trained model
-    pass
+    return model
 
 
 def evaluate_model(model, X_test, y_test, feature_names):
@@ -290,7 +306,8 @@ if __name__ == "__main__":
 
     # Step 5: Train model
     # TODO: Call train_model() with training data and feature names (X.columns)
-    
+    model = train_model(X_train, y_train, X.columns)
+
     # Step 6: Evaluate model
     # TODO: Call evaluate_model() with model, test data, and feature names
     
