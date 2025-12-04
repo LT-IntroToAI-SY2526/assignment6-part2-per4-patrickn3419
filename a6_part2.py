@@ -122,17 +122,24 @@ def prepare_features(data):
     """
     # TODO: Create a list of feature column names
     #       ['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age']
+    feature_columns = ['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age']
     
     # TODO: Create X by selecting those columns from data
+    X = data[feature_columns]
     
     # TODO: Create y by selecting the 'Price' column
+    y = data['Price']
     
     # TODO: Print the shape of X and y
+    print(f"\n=== Feature Preparation ===")
+    print(f"Features (X) shape: {X.shape}")
+    print(f"Target (y) shape: {y.shape}")
     
     # TODO: Print the feature column names
+    print(f"\nFeature columns: {list(X.columns)}")
     
     # TODO: Return X and y
-    pass
+    return X, y
 
 
 def split_data(X, y):
