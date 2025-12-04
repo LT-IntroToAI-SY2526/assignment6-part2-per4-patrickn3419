@@ -72,23 +72,41 @@ def visualize_features(data):
     #       - scatter plot, color='green', alpha=0.6
     #       - labels and title
     #       - grid
+    axes[0, 1].scatter(data['Bedrooms'], data['Price'], color='green', alpha=0.6)
+    axes[0, 1].set_xlabel('Bedrooms')
+    axes[0, 1].set_ylabel('Price ($)')
+    axes[0, 1].set_title('Bedrooms vs Price')
+    axes[0, 1].grid(True, alpha=0.3)
     
     # TODO: Plot 3 (bottom left): Bathrooms vs Price
     #       - scatter plot, color='red', alpha=0.6
     #       - labels and title
     #       - grid
+    axes[1, 0].scatter(data['Bathrooms'], data['Price'], color='red', alpha=0.6)
+    axes[1, 0].set_xlabel('Bathrooms')
+    axes[1, 0].set_ylabel('Price ($)')
+    axes[1, 0].set_title('Bathrooms vs Price')
+    axes[1, 0].grid(True, alpha=0.3)
     
     # TODO: Plot 4 (bottom right): Age vs Price
     #       - scatter plot, color='orange', alpha=0.6
     #       - labels and title
     #       - grid
+    axes[1, 1].scatter(data['Age'], data['Price'], color='orange', alpha=0.6)
+    axes[1, 1].set_xlabel('Age')
+    axes[1, 1].set_ylabel('Price ($)')
+    axes[1, 1].set_title('Age vs Price')
+    axes[1, 1].grid(True, alpha=0.3)
     
     # TODO: Use plt.tight_layout() to make plots fit nicely
+    plt.tight_layout()
     
     # TODO: Save the figure as 'feature_plots.png' with dpi=300
+    plt.savefig('feature_plots.png', dpi=300, bbox_inches='tight')
+    print("\n✓ Feature plots saved as 'feature_plots.png'")
     
     # TODO: Show the plot
-    pass
+    plt.show()
 
 
 def prepare_features(data):
