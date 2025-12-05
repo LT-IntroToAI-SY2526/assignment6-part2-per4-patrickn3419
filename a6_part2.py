@@ -298,13 +298,19 @@ def make_prediction(model, sqft, bedrooms, bathrooms, age):
     """
     # TODO: Create a DataFrame with the house features
     #       columns should be: ['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age']
+    house_features = pd.DataFrame([[sqft, bedrooms, bathrooms, age]],
+                                  columns=['SquareFeet', 'Bedrooms', 'Bathrooms', 'Age'])
     
     # TODO: Make a prediction using model.predict()
+    predicted_price = model.predict(house_features)[0]
     
     # TODO: Print the house specs and predicted price nicely formatted
-    
+    print(f"\n=== New Prediction ===")
+    print(f"Car specs: {sqft:.0f} square feet, {bedrooms} bedrooms, {bathrooms} bathrooms, {age} years old")
+    print(f"Predicted price: ${predicted_price:,.2f}")
+
     # TODO: Return the predicted price
-    pass
+    return predicted_price
 
 
 if __name__ == "__main__":
@@ -318,6 +324,7 @@ if __name__ == "__main__":
     
     # Step 2: Visualize features
     # TODO: Call visualize_features() with the data
+    visualize_features(data)
     
     # Step 3: Prepare features
     # TODO: Call prepare_features() and store X and y
@@ -333,12 +340,15 @@ if __name__ == "__main__":
 
     # Step 6: Evaluate model
     # TODO: Call evaluate_model() with model, test data, and feature names
+    predictions = evaluate_model(model, X_test, y_test, X.columns)
     
     # Step 7: Compare predictions
     # TODO: Call compare_predictions() showing first 10 examples
+    compare_predictions(y_test, predictions)
     
     # Step 8: Make a new prediction
     # TODO: Call make_prediction() for a house of your choice
+    make_prediction(model, 3000, 12, 3, 1600) # 3000 sqft, 12 bedrooms, 3 bathrooms, 1600 years old
     
     print("\n" + "=" * 70)
     print("✓ Assignment complete! Check your saved plots.")
