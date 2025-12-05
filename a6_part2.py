@@ -264,13 +264,22 @@ def compare_predictions(y_test, predictions, num_examples=5):
     """
     # TODO: Print a header row with columns:
     #       Actual Price, Predicted Price, Error, % Error
+    print(f"\n=== Prediction Examples ===")
+    print(f"{'Actual Price':<15} {'Predicted Price':<18} {'Error':<12} {'% Error'}")
+    print("-" * 60)
     
     # TODO: For the first num_examples:
     #       - Get actual and predicted price
     #       - Calculate error (actual - predicted)
     #       - Calculate percentage error
     #       - Print in a nice formatted table
-    pass
+    for i in range(min(num_examples, len(y_test))):
+        actual = y_test.iloc[i]
+        predicted = predictions[i]
+        error = actual - predicted
+        pct_error = (abs(error) / actual) * 100
+
+        print(f"${actual:>13.2f}   ${predicted:>13.2f}   ${error:>10.2f}   {pct_error:>6.2f}%")
 
 
 def make_prediction(model, sqft, bedrooms, bathrooms, age):
