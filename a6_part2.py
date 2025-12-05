@@ -222,21 +222,35 @@ def evaluate_model(model, X_test, y_test, feature_names):
         predictions array
     """
     # TODO: Make predictions on X_test
+    predictions = model.predict(X_test)
     
     # TODO: Calculate R² score
+    r2 = r2_score(y_test, predictions)
     
     # TODO: Calculate MSE and RMSE
+    mse = mean_squared_error(y_test, predictions)
+    rmse = np.sqrt(mse)
     
     # TODO: Print R² score with interpretation
+    print(f"\n=== Model Performance ===")
+    print(f"R² Score: {r2:.4f}")
+    print(f"  → Model explains {r2*100:.2f}% of price variation")
     
     # TODO: Print RMSE with interpretation
+    print(f"\nRoot Mean Squared Error: ${rmse:.2f}")
+    print(f"  → On average, predictions are off by ${rmse:.2f}")
     
     # TODO: Calculate and print feature importance
     #       Hint: Use np.abs(model.coef_) and sort by importance
     #       Show which features matter most
+    print(f"\n=== Feature Importance ===")
+    feature_importance = list(zip(feature_names, np.abs(model.coef_)))
+    feature_importance.sort(key=lambda x: x[1], reverse=True)
+    for i, (name, importance) in enumerate(feature_importance, 1):
+        print(f"{i}. {name}: {importance:.2f}")
     
     # TODO: Return predictions
-    pass
+    return predictions
 
 
 def compare_predictions(y_test, predictions, num_examples=5):
